@@ -36,4 +36,7 @@ public class Event {
     @Column
     private String description;
 
+    @Column
+    private String imageUrl;
+
 }
