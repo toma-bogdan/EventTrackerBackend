@@ -1,7 +1,13 @@
 package com.evenTracker.events.eventsInfo;
 
 import jakarta.persistence.*;
+import lombok.*;
 
+@Getter
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "organizers")
 public class Organizer {
@@ -15,24 +21,12 @@ public class Organizer {
     @Column
     private String description;
 
-    public int getId() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public void setDescription(String description) {

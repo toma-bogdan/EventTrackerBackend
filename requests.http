@@ -8,7 +8,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwbHNwbHMiLCJpYXQiOjE3MTYxN
 ### locations with organizer id =
 
 GET localhost:8080/events?organizerId=101
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0b21hYm9nZGFuQGdtYWlsLmNvbSIsImlhdCI6MTcxMzk0NTUyNSwiZXhwIjoxNzEzOTgwMDg1fQ.st_pAuuVgCdAxi6BMwm9y20pNh236usNoTgHH6xESXE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE3NDI5NTU5LCJleHAiOjE3MTc0NjQxMTl9.RZXERR3ohkVhxcCxbu-yYNBg9tALWSri3XhvQlRQTEk
 
 ### get event by id
 
@@ -103,7 +103,7 @@ Content-Type: application/json
   "firstName": "bbcC",
   "lastName": "bbb",
   "role": "ORGANIZER",
-  "email": "bbccCCCccCAAAAAAAcba",
+  "email": "bbccCCCccCAAAAAAAcbaaaaa",
   "password": "bbb"
 }
 
@@ -148,7 +148,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzE1MzU3OTM0L
 
 ### get registrations of a user
 GET http://localhost:8080/registration/user/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTYzMzc1NDEsImV4cCI6MTcxNjM3MjEwMX0.z8nd7G639Erc7aHe0ppkDT51TIM6usvai4P3OYNUXL8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTczNjc2NTIsImV4cCI6MTcxNzQwMjIxMn0.gxlHPJCZQRz5MucTP7b6xP1vziB1VhqsOTV7dkYplP0
 
 ### delete registration
 DELETE http://localhost:8080/registration/66
@@ -160,7 +160,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzE1MzU3OTM0L
 
 ###
 GET http://localhost:8080/locations
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzE1MzU3OTM0LCJleHAiOjE3MTUzOTI0OTR9.KnZ2HtA0fGoOr1HkdijKvVrHWfKciua9lLJpv6aeT1o
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE2ODUwNzIwLCJleHAiOjE3MTY4ODUyODB9.CmOeD5pCqrWVZSNHYV0H4p97DsfTUnOngngtWtznm1s
 
 
 ###
@@ -181,5 +181,38 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/users/email?email=plspls
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwbHNwbHMiLCJpYXQiOjE3MTYxNTI2ODksImV4cCI6MTcxNjE4NzI0OX0.1kmJalz645QaCa18bBG0LgoOkLMWmMIhrixnCcgVGUE
+GET http://localhost:8080/users/email?email=bogdan2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiT1JHQU5JWkVSIiwic3ViIjoiYm9nZGFuIiwiaWF0IjoxNzE2NzY4NjQ5LCJleHAiOjE3MTY4MDMyMDl9.7siSe_GlAdL6PWXrSZyaW76ohsJfYohzPp_9QZ3S_ww
+
+###
+POST http://localhost:8080/auth/organizer
+Content-Type: application/json
+
+{
+  "organizerName": "AAAa",
+  "description": "AAA",
+  "firstName": "AAA",
+  "lastName": "AAA",
+  "email": "HAHAHA",
+  "password": "123123",
+  "role": "ORGANIZER"
+}
+###
+GET http://localhost:8080/organizer?id=7
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE3NDI5NTU5LCJleHAiOjE3MTc0NjQxMTl9.RZXERR3ohkVhxcCxbu-yYNBg9tALWSri3XhvQlRQTEk
+
+###
+POST http://localhost:8080/postEventInfo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE2OTM5MDk5LCJleHAiOjE3MTY5NzM2NTl9.GuSPqhD_S-v5l6qsDSzZjV-YfsYAtXxoREZAB5lO7PM
+Content-Type: application/json
+
+{
+  "eventId": 504,
+  "name": "First Day pass",
+  "description": "Access all areas in the first day of the festival",
+  "price": 100.00
+}
+
+###
+DELETE http://localhost:8080/deleteEventInfo/10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE2OTM5MDk5LCJleHAiOjE3MTY5NzM2NTl9.GuSPqhD_S-v5l6qsDSzZjV-YfsYAtXxoREZAB5lO7PM

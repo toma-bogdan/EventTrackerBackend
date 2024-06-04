@@ -13,7 +13,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @GetMapping("/email")
     public ResponseEntity<UserDTO> getUserByEmail(@RequestParam String email) {
         UserDTO user = userService.getUserByEmail(email);

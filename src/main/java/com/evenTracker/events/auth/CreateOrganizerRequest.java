@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class CreateOrganizerRequest {
+    private String organizerName;
+    private String description = null;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
     private Role role;
-    private Integer organizerId = null;
 }

@@ -22,4 +22,10 @@ public class AuthenticationController {
     ) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
+    @PostMapping("/organizer")
+    public ResponseEntity<AuthenticationResponse> register(
+            @RequestBody CreateOrganizerRequest request
+    ) throws Exception {
+        return ResponseEntity.ok(authenticationService.createOrganizer(request));
+    }
 }

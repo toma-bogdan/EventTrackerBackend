@@ -27,6 +27,7 @@ public class UserService {
         dto.setLastName(user.getLastName());
         dto.setEmail(user.getEmail());
         dto.setRole(user.getRole());
+        dto.setOrganization_id(user.getOrganization_id());
         return dto;
     }
 }

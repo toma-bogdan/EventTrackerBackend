@@ -29,6 +29,8 @@ public class EventService {
         event.setStartDate(LocalDate.from(eventDTO.getStartDate()));
         event.setEndDate(LocalDate.from(eventDTO.getEndDate()));
         event.setDescription(eventDTO.getDescription());
+        event.setImageUrl(eventDTO.getImageUrl());
+        event.setCategory(eventDTO.getCategory());
         return eventRepository.save(event);
     }
     public void deleteEvent(Integer eventId) throws Exception {

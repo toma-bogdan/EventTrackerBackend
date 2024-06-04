@@ -17,5 +17,6 @@ public class EventDTO {
     private LocalDate startDate;
     private LocalDate endDate;
     private String description;
-
+    private String imageUrl = null;
+    private Category category = null;
 }

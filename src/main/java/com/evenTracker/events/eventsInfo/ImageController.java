@@ -41,7 +41,7 @@ public class ImageController {
             Path path = Paths.get(uploadDir + File.separator + filename);
             Files.write(path, file.getBytes());
 
-            String imageUrl = serverUrl + "/api/images/" + filename; // Construct the image URL
+            String imageUrl = serverUrl + "/api/images/" + filename;
             return ResponseEntity.ok(imageUrl);
         } catch (IOException e) {
             e.printStackTrace();

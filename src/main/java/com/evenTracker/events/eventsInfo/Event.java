@@ -39,4 +39,6 @@ public class Event {
     @Column
     private String imageUrl;
 
+    @Enumerated(EnumType.STRING)
+    private Category category;
 }
