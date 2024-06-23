@@ -12,4 +12,6 @@ public interface RegistrationRepository extends JpaRepository<Registration, Inte
     Optional<Registration> findByUserIdAndEventInfoId(Integer userId, Integer eventId);
     Optional<Registration> findByUserIdAndEventInfo_EventId(Integer userId, Integer eventId);
     List<Registration> findByUserId(Integer userId);
+    List<Registration> findByEventInfoId(Integer eventInfoId);
+    void deleteAllByEventInfoId(Integer eventInfoId);
 }

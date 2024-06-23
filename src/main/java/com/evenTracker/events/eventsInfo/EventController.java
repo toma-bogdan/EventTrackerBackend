@@ -1,5 +1,6 @@
 package com.evenTracker.events.eventsInfo;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -86,12 +87,30 @@ public class EventController {
         return eventInfoRepository.findById(id);
     }
 
+    @PutMapping(path = "/organizer/{organizerId}")
+    public ResponseEntity<Organizer> updateOrganizer(@PathVariable("organizerId") int organizerId, @RequestBody OrganizerDTO organizerDTO) {
+        Organizer organizer = organizerRepository.findById(organizerId).orElseThrow();
+        organizer.setDescription(organizerDTO.getDescription());
+        organizer.setName(organizerDTO.getOrganizerName());
+        Organizer response = organizerRepository.save(organizer);
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping(path = "/postEvent")
     @PreAuthorize("hasAnyRole('ORGANIZER', 'ADMIN')")
     public ResponseEntity<Event> create(@RequestBody @Valid EventDTO eventDTO) {
         Event savedEvent = eventService.createEvent(eventDTO);
         return ResponseEntity.ok(savedEvent);
     }
+
+    @PutMapping(path = "/editEvent/{eventId}")
+    @PreAuthorize("hasAnyRole('ORGANIZER', 'ADMIN')")
+    public ResponseEntity<Event> edit(@PathVariable Integer eventId, @RequestBody @Valid EventDTO eventDTO) {
+        Event updatedEvent = eventService.editEvent(eventId, eventDTO);
+        return ResponseEntity.ok(updatedEvent);
+    }
+
+
     @PostMapping(path = "/postEventInfo")
     @PreAuthorize("hasAnyRole('ORGANIZER', 'ADMIN')")
     public ResponseEntity<EventInfo> create(@RequestBody @Valid EventInfoDto eventInfoDto) {
@@ -131,6 +150,4 @@ public class EventController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    
 }

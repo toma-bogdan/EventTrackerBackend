@@ -68,6 +68,18 @@ public class AuthenticationService {
                 .build();
     }
 
+    public void changePassword(ChangePasswordRequest request) {
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        if (!passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
+            throw new BadCredentialsException("Old password is incorrect");
+        }
+
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+    }
+
     public AuthenticationResponse createOrganizer(CreateOrganizerRequest request) throws Exception {
         // Verify if the organizer already exists
         boolean organizerExists = organizerRepository.findByName(request.getOrganizerName()).isPresent();

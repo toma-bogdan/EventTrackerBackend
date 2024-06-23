@@ -1,6 +1,7 @@
 package com.evenTracker.events.User;
 
 
+import com.evenTracker.events.ratings.Rating;
 import com.evenTracker.events.registration.Registration;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,8 @@ public class User implements UserDetails {
     private Role role;
 
     private Integer organization_id;
+
+    private String profile_image;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

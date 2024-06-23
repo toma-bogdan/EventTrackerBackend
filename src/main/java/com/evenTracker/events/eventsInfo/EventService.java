@@ -1,5 +1,6 @@
 package com.evenTracker.events.eventsInfo;
 
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,6 +24,21 @@ public class EventService {
         Location location = locationRepository.findById(eventDTO.getLocationId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid location ID: " + eventDTO.getLocationId()));
         Event event = new Event();
+        return getEvent(eventDTO, event, organizer, location);
+    }
+    public Event editEvent(Integer eventId, EventDTO eventDTO) {
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid event ID: " + eventId));
+        Organizer organizer = organizerRepository.findById(eventDTO.getOrganizerId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid organizer ID: " + eventDTO.getOrganizerId()));
+        Location location = locationRepository.findById(eventDTO.getLocationId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid location ID: " + eventDTO.getLocationId()));
+
+        return getEvent(eventDTO, event, organizer, location);
+    }
+
+    @NotNull
+    private Event getEvent(EventDTO eventDTO, Event event, Organizer organizer, Location location) {
         event.setName(eventDTO.getName());
         event.setOrganizer(organizer);
         event.setLocation(location);
@@ -33,6 +49,7 @@ public class EventService {
         event.setCategory(eventDTO.getCategory());
         return eventRepository.save(event);
     }
+
     public void deleteEvent(Integer eventId) throws Exception {
         if (eventRepository.existsById(eventId)) {
             eventRepository.deleteById(eventId);

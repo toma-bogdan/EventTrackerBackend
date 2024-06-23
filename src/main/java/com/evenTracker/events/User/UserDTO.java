@@ -12,4 +12,5 @@ public class UserDTO {
     private String email;
     private Role role;
     private Integer organization_id;
+    private String profile_image = null;
 }

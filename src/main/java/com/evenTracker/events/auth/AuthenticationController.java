@@ -28,4 +28,10 @@ public class AuthenticationController {
     ) throws Exception {
         return ResponseEntity.ok(authenticationService.createOrganizer(request));
     }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest request) {
+        authenticationService.changePassword(request);
+        return ResponseEntity.ok("Password changed successfully");
+    }
 }

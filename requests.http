@@ -3,7 +3,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzE1MDI3MTM1L
 
 ###
 GET http://localhost:8080/allEvents
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwbHNwbHMiLCJpYXQiOjE3MTYxNTgwMDQsImV4cCI6MTcxNjE5MjU2NH0.P-dY6R7gJfN85idr1NrWHxmH_86y-NLSaMI_QdyK4LQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTc2MjU5NjAsImV4cCI6MTcxNzY2MDUyMH0.z322YZJqsPdA_OSH7pLU2gZzr17xM63IkuJn47iaRQk
 
 ### locations with organizer id =
 
@@ -148,7 +148,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzE1MzU3OTM0L
 
 ### get registrations of a user
 GET http://localhost:8080/registration/user/1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTczNjc2NTIsImV4cCI6MTcxNzQwMjIxMn0.gxlHPJCZQRz5MucTP7b6xP1vziB1VhqsOTV7dkYplP0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTc2MjU5NjAsImV4cCI6MTcxNzY2MDUyMH0.z322YZJqsPdA_OSH7pLU2gZzr17xM63IkuJn47iaRQk
 
 ### delete registration
 DELETE http://localhost:8080/registration/66
@@ -156,7 +156,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzE1MzU3OTM0L
 
 ###
 GET http://localhost:8080/users/email?email=a
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzE1MzU3OTM0LCJleHAiOjE3MTUzOTI0OTR9.KnZ2HtA0fGoOr1HkdijKvVrHWfKciua9lLJpv6aeT1o
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTc2MjU5NjAsImV4cCI6MTcxNzY2MDUyMH0.z322YZJqsPdA_OSH7pLU2gZzr17xM63IkuJn47iaRQk
 
 ###
 GET http://localhost:8080/locations
@@ -181,8 +181,8 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/users/email?email=bogdan2
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiT1JHQU5JWkVSIiwic3ViIjoiYm9nZGFuIiwiaWF0IjoxNzE2NzY4NjQ5LCJleHAiOjE3MTY4MDMyMDl9.7siSe_GlAdL6PWXrSZyaW76ohsJfYohzPp_9QZ3S_ww
+GET http://localhost:8080/users/email?email=bogdan3
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE3NzI2NTE3LCJleHAiOjE3MTc3NjEwNzd9.-xIQl8iXAuc1W34utp_a4GWr5Pf-VZIwyods81_Eb9A
 
 ###
 POST http://localhost:8080/auth/organizer
@@ -216,3 +216,43 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8080/deleteEventInfo/10
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE2OTM5MDk5LCJleHAiOjE3MTY5NzM2NTl9.GuSPqhD_S-v5l6qsDSzZjV-YfsYAtXxoREZAB5lO7PM
+
+###
+POST http://localhost:8080/ratings
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTgwMTIwODQsImV4cCI6MTcxODA0NjY0NH0.IbW3czAgVKwxLBDTJGlqUEI6rO2VpNeV-sBK7rhr4VU
+Content-Type: application/json
+
+{
+  "rating": 4,
+  "userId": 2,
+  "eventId": 4
+}
+
+###
+GET http://localhost:8080/ratings/event/501
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTgwMTIwODQsImV4cCI6MTcxODA0NjY0NH0.IbW3czAgVKwxLBDTJGlqUEI6rO2VpNeV-sBK7rhr4VU
+
+###
+PUT http://localhost:8080/organizer/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE3NzE3MDkzLCJleHAiOjE3MTc3NTE2NTN9._Zobff1jDPVQ5ba2d9rNAEHyizJcwNxosVnwe62y4jQ
+Content-Type: application/json
+
+{
+  "organizerName": "",
+  "description": ""
+}
+
+###
+POST http://localhost:8080/comments
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTgwMTIwODQsImV4cCI6MTcxODA0NjY0NH0.IbW3czAgVKwxLBDTJGlqUEI6rO2VpNeV-sBK7rhr4VU
+Content-Type: application/json
+
+{
+  "comment": "testComment2",
+  "userId": 953,
+  "eventId": 501
+}
+
+###
+GET http://localhost:8080/comments/event/501
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTgzMTI5MjMsImV4cCI6MTcxODM0NzQ4M30.Nb14tiUWWWnzeWHBRdkc3exSrRcoETQHbWGCRRuUdvY

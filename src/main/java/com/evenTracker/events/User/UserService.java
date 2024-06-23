@@ -20,7 +20,7 @@ public class UserService {
         return toUserDTO(user.get());
     }
 
-    private UserDTO toUserDTO(User user) {
+    public UserDTO toUserDTO(User user) {
         UserDTO dto = new UserDTO();
         dto.setId(user.getId());
         dto.setFirstName(user.getFirstName());
@@ -28,6 +28,17 @@ public class UserService {
         dto.setEmail(user.getEmail());
         dto.setRole(user.getRole());
         dto.setOrganization_id(user.getOrganization_id());
+        dto.setProfile_image(user.getProfile_image());
         return dto;
+    }
+
+    public UserDTO updateProfileImage(String email, String profileImage) {
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isEmpty()) {
+            throw new NoSuchElementException("No user found with email " + email);
+        }
+        user.get().setProfile_image(profileImage);
+        userRepository.save(user.get());
+        return toUserDTO(user.get());
     }
 }

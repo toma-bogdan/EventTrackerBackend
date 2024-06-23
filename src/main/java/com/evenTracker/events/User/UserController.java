@@ -1,6 +1,5 @@
 package com.evenTracker.events.User;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,5 +17,9 @@ public class UserController {
         UserDTO user = userService.getUserByEmail(email);
         return ResponseEntity.ok(user);
     }
-
+    @PostMapping("/profileImage")
+    public ResponseEntity<UserDTO> updateUserProfile(@RequestParam String email, @RequestParam String profile_image) {
+        UserDTO user = userService.updateProfileImage(email, profile_image);
+        return ResponseEntity.ok(user);
+    }
 }
