@@ -35,7 +35,6 @@ public class ImageController {
         if (file.isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("File is empty");
         }
-
         try {
             String filename = UUID.randomUUID().toString() + "_" + file.getOriginalFilename();
             Path path = Paths.get(uploadDir + File.separator + filename);
@@ -44,7 +43,6 @@ public class ImageController {
             String imageUrl = serverUrl + "/api/images/" + filename;
             return ResponseEntity.ok(imageUrl);
         } catch (IOException e) {
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image");
         }
     }

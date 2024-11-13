@@ -49,7 +49,6 @@ public class AuthenticationService {
                 .build();
         return getAuthenticationResponse(user, request.getRole());
     }
-
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         try {
             authenticationManager.authenticate(
@@ -67,7 +66,6 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
-
     public void changePassword(ChangePasswordRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
@@ -79,7 +77,6 @@ public class AuthenticationService {
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
     }
-
     public AuthenticationResponse createOrganizer(CreateOrganizerRequest request) throws Exception {
         // Verify if the organizer already exists
         boolean organizerExists = organizerRepository.findByName(request.getOrganizerName()).isPresent();
@@ -109,7 +106,6 @@ public class AuthenticationService {
                 .build();
         return getAuthenticationResponse(user, request.getRole());
     }
-
     private AuthenticationResponse getAuthenticationResponse(User user, Role role) {
         userRepository.save(user);
         Map<String, Object> claims = new HashMap<>();

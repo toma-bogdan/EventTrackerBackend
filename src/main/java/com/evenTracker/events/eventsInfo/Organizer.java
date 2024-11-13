@@ -3,6 +3,7 @@ package com.evenTracker.events.eventsInfo;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Setter
 @Getter
 @Data
 @Builder
@@ -21,15 +22,4 @@ public class Organizer {
     @Column
     private String description;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

@@ -42,4 +42,6 @@ public class Event {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @Column(nullable = false)
+    private int scannedTickets = 0;
 }

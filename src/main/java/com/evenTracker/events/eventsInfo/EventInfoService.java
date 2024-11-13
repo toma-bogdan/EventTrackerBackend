@@ -3,20 +3,17 @@ package com.evenTracker.events.eventsInfo;
 import com.evenTracker.events.registration.Registration;
 import com.evenTracker.events.registration.RegistrationRepository;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class EventInfoService {
     private final EventInfoRepository eventInfoRepository;
     private final RegistrationRepository registrationRepository;
-
-    public EventInfoService(EventInfoRepository eventInfoRepository, RegistrationRepository registrationRepository) {
-        this.eventInfoRepository = eventInfoRepository;
-        this.registrationRepository = registrationRepository;
-    }
 
     public EventInfo createEventInfo(EventInfoDto eventInfoDto) {
         EventInfo eventInfo = new EventInfo();

@@ -1,9 +1,9 @@
 GET localhost:8080/organizers
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzE1MDI3MTM1LCJleHAiOjE3MTUwNjE2OTV9.wGQlWdyC5mmtjhEaUe-Bam1VzlDyfnyAQIBNbwPPkwk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTk4NzY3MzMsImV4cCI6MTcxOTkxMTI5M30.pFEZ62XXhqXj0KPb8Hm6r1IKUC5X_7d7cWPZtvkCZLM
 
 ###
 GET http://localhost:8080/allEvents
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTc2MjU5NjAsImV4cCI6MTcxNzY2MDUyMH0.z322YZJqsPdA_OSH7pLU2gZzr17xM63IkuJn47iaRQk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTk4NzY3MzMsImV4cCI6MTcxOTkxMTI5M30.pFEZ62XXhqXj0KPb8Hm6r1IKUC5X_7d7cWPZtvkCZLM
 
 ### locations with organizer id =
 
@@ -49,7 +49,7 @@ Content-Type: application/json
 {"eventId": 802, "attendeeName": "Orzata Gabriel"}
 
 ###
-POST localhost:8080/registration
+POST localhost:8080/registrationc
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJzdWIiOiJiYmNjQUFBQUFBQWNiYSIsImlhdCI6MTcxMzkwOTQ1NiwiZXhwIjoxNzEzOTQ0MDE2fQ.qOtCDC-yk7e1HbBGGUxRMmd-i46Cxu6huWCIuEyimhw
 Content-Type: application/json
 
@@ -72,8 +72,8 @@ POST http://localhost:8080/auth/authenticate
 Content-Type: application/json
 
 {
-  "email": "a",
-  "password": "a"
+  "email": "",
+  "password": ""
 }
 
 ### post event (only organizers)
@@ -230,7 +230,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/ratings/event/501
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTgwMTIwODQsImV4cCI6MTcxODA0NjY0NH0.IbW3czAgVKwxLBDTJGlqUEI6rO2VpNeV-sBK7rhr4VU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTk4NzY3MzMsImV4cCI6MTcxOTkxMTI5M30.pFEZ62XXhqXj0KPb8Hm6r1IKUC5X_7d7cWPZtvkCZLM
 
 ###
 PUT http://localhost:8080/organizer/7
@@ -255,4 +255,8 @@ Content-Type: application/json
 
 ###
 GET http://localhost:8080/comments/event/501
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTgzMTI5MjMsImV4cCI6MTcxODM0NzQ4M30.Nb14tiUWWWnzeWHBRdkc3exSrRcoETQHbWGCRRuUdvY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJpYXQiOjE3MTk4NzY3MzMsImV4cCI6MTcxOTkxMTI5M30.pFEZ62XXhqXj0KPb8Hm6r1IKUC5X_7d7cWPZtvkCZLM
+
+###
+POST http://localhost:8080/events/scanTicket/f7092f9c-94de-49f8-aca1-b9cf14c06c25
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2dkYW4zIiwiaWF0IjoxNzE5ODc3NTk4LCJleHAiOjE3MTk5MTIxNTh9.fkjZtt-zJjQWZ_yX-swCgWBlR4azl7OdSvOf4gFcMMw

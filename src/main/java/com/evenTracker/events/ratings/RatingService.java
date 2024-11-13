@@ -4,6 +4,7 @@ import com.evenTracker.events.User.User;
 import com.evenTracker.events.User.UserRepository;
 import com.evenTracker.events.eventsInfo.Event;
 import com.evenTracker.events.eventsInfo.EventRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,16 +13,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class RatingService {
     private final RatingRepository ratingRepository;
     private final UserRepository userRepository;
     private final EventRepository eventRepository;
-
-    public RatingService(RatingRepository ratingRepository, UserRepository userRepository, EventRepository eventRepository) {
-        this.ratingRepository = ratingRepository;
-        this.userRepository = userRepository;
-        this.eventRepository = eventRepository;
-    }
 
     public RatingResponseDTO saveRating(RatingDTO ratingDTO) {
         Optional<Rating> optionalRating = ratingRepository.findByEventIdAndUserId(ratingDTO.getEventId(), ratingDTO.getUserId());

@@ -2,6 +2,7 @@ package com.evenTracker.events.eventsInfo;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
+@RequiredArgsConstructor
 public class EventController {
 
     private final OrganizerRepository organizerRepository;
@@ -20,22 +22,6 @@ public class EventController {
     private final LocationRepository locationRepository;
     private final EventService eventService;
     private final EventInfoService eventInfoService;
-
-    public EventController(
-            OrganizerRepository organizerRepository,
-            EventRepository eventRepository,
-            EventInfoRepository eventInfoRepository,
-            LocationRepository locationRepository,
-            EventService eventService,
-            EventInfoService eventInfoService
-    ) {
-        this.organizerRepository = organizerRepository;
-        this.eventRepository = eventRepository;
-        this.eventInfoRepository = eventInfoRepository;
-        this.locationRepository = locationRepository;
-        this.eventService = eventService;
-        this.eventInfoService = eventInfoService;
-    }
 
     @GetMapping(path = "/locations")
     public List<Location> getLocations() {
@@ -149,5 +135,12 @@ public class EventController {
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping(path = "/events/scanTicket/{ticketCode}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'ORGANIZER')")
+    public ResponseEntity<Boolean> scanTicket(@PathVariable String ticketCode) {
+        boolean validTicket = eventService.scanTicket(ticketCode);
+        return ResponseEntity.ok(validTicket);
     }
 }

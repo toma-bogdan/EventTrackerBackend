@@ -1,9 +1,13 @@
 package com.evenTracker.events.eventsInfo;
 
+import com.evenTracker.events.registration.Registration;
+import com.evenTracker.events.registration.RegistrationRepository;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 
 @Service
 public class EventService {
@@ -11,11 +15,13 @@ public class EventService {
     private final EventRepository eventRepository;
     private final OrganizerRepository organizerRepository;
     private final LocationRepository locationRepository;
+    private final RegistrationRepository registrationRepository;
 
-    public EventService(EventRepository eventRepository, OrganizerRepository organizerRepository, LocationRepository locationRepository) {
+    public EventService(EventRepository eventRepository, OrganizerRepository organizerRepository, LocationRepository locationRepository, RegistrationRepository registrationRepository) {
         this.eventRepository = eventRepository;
         this.organizerRepository = organizerRepository;
         this.locationRepository = locationRepository;
+        this.registrationRepository = registrationRepository;
     }
 
     public Event createEvent(EventDTO eventDTO) {
@@ -56,5 +62,23 @@ public class EventService {
         } else {
             throw new Exception("Event not found with id: " + eventId);
         }
+    }
+
+    @Transactional
+    public synchronized boolean scanTicket(String ticketCode){
+        Registration registration = registrationRepository.findByTicketCode(ticketCode)
+                .orElseThrow(() -> new NoSuchElementException("Ticket code " + ticketCode + " not found"));
+        if (registration.getScanned()) {
+            return false;
+        }
+        int eventId = registration.getEventInfo().getEventId();
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new NoSuchElementException("Event with id " + eventId + " not found"));
+
+        event.setScannedTickets(event.getScannedTickets() + 1);
+        registration.setScanned(true);
+        registrationRepository.save(registration);
+        eventRepository.save(event);
+        return true;
     }
 }
